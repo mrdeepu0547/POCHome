@@ -11,7 +11,7 @@ import { PsServiceService } from '../ps-service.service';
 export class PsHomeComponent implements OnInit {
 
   public lowerBound = 0;
-  public upperBound = 20;
+  public upperBound = 10;
   public lookUpsData:any = [];
   public psList:any = [];
   public show = false;
@@ -186,14 +186,14 @@ public data = {
  }
 
  onPrevious(){
-   this.lowerBound=this.lowerBound-20;
-   this.upperBound=this.upperBound-20;
+   this.lowerBound=this.lowerBound-10;
+   this.upperBound=this.upperBound-10;
    this.getAllPersons();
  }
 
  onNext(){
-   this.lowerBound=this.lowerBound+20;
-   this.upperBound=this.upperBound+20;
+   this.lowerBound=this.lowerBound+10;
+   this.upperBound=this.upperBound+10;
    this.getAllPersons();
  }
 }
