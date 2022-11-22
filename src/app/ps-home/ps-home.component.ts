@@ -11,9 +11,14 @@ import { PsServiceService } from '../ps-service.service';
 export class PsHomeComponent implements OnInit {
 
   public lowerBound = 0;
-  public upperBound = 10;
+  // public upperBound = 10;
+  pageSize: number = 10;
+paseSizes = [5, 10, 15, 20, 30];
   public lookUpsData:any = [];
   public psList:any = [];
+  upperBound=this.pageSize;
+  users= this.psList;
+  tempData= this.psList;
   public show = false;
   public searchText = '';
   public viewtable = false
@@ -80,6 +85,7 @@ public data = {
  ngOnInit() {
   this.getAllPersons();
   this.getAllLookupsData();
+  this.setPageSize()
  }
 
  get getControl(){
@@ -196,5 +202,10 @@ public data = {
    this.upperBound=this.upperBound+10;
    this.getAllPersons();
  }
+//page limiters
+
+setPageSize = () => {
+  this.psList = [...this.tempData.slice(0, this.pageSize)];
+};
 }
 

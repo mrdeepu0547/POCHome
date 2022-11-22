@@ -8,6 +8,7 @@ import { FilterPipe } from './filter.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PsServiceService } from './ps-service.service';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
   ],
   providers: [PsServiceService],
   bootstrap: [AppComponent]

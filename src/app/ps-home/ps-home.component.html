@@ -17,6 +17,14 @@
   <div class="d-flex ms-auto order-5">
     <button type="button" class="btn btn-info" (click)="onClickedMe()">Click here to view table</button>&nbsp;&nbsp;
     <button type="button" class="btn btn-danger" (click)="onClose()">Click here to close table</button>
+    <label class="card-title mr-2">Page Size</label>
+    <select
+      class="form-control-sm"
+      [(ngModel)]="pageSize"
+      (ngModelChange)="setPageSize()"
+    >
+      <option *ngFor="let size of paseSizes">{{ size }}</option>
+    </select>
   </div>
 </nav>
 <div class="container" *ngIf="viewtable">
