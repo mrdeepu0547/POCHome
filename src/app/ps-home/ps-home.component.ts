@@ -38,7 +38,6 @@ class psUser {
 export class PsHomeComponent implements OnInit {
 
   public lowerBound:number = 0;
-  // public upperBound = 10;
   pageSize: number = 20;
    paseSizes:number[] = [5, 10, 15, 20];
   public lookUpsData:any = [];
@@ -54,9 +53,6 @@ export class PsHomeComponent implements OnInit {
   public firstName=''
   public names=[]
   public editForm=false;
-
-  // public limit = [5, 10, 15, 20];
-  // public i:any;
   personForm = new FormGroup({
     psId:new FormControl(0),
     lastName: new FormControl('', [Validators.required, Validators.minLength(3)]),
@@ -152,14 +148,6 @@ public data = {
    this.editForm=false
  }
 
-//  onLimit(i){
-//   let jsonObj={"userId":1,"lowerBound":this.lowerBound,"upperBound":+i,"psId":0,"psName":"","officeId":0,"ssn":0,"mrn":0,"city":"","stateId":"","zipCode":"","phone":"","psStatusId":"1","admissionStartDate":"","admissionEndDate":"","dischargeDate":"","caseManagerId":0,"coordinatorId":0,"serviceStartDate":"","serviceEndDate":"","serviceId":0,"authNumber":"","payorPlanId":"","authStatusId":"","accountNumber":"","dischargeStartDate":"","dischargeEndDate":""};
-//   this.psService.getPersons(JSON.stringify(jsonObj)).subscribe(result => {
-//     this.psList = result.psList;
-//     console.log(result);
-//   })
-// }
-
  getAllPersons() {
   let jsonObj={"userId":1,"lowerBound":this.lowerBound,"upperBound":this.pageSize,"psId":0,"psName":"","officeId":0,"ssn":0,"mrn":0,"city":"","stateId":"","zipCode":"","phone":"","psStatusId":"1","admissionStartDate":"","admissionEndDate":"","dischargeDate":"","caseManagerId":0,"coordinatorId":0,"serviceStartDate":"","serviceEndDate":"","serviceId":0,"authNumber":"","payorPlanId":"","authStatusId":"","accountNumber":"","dischargeStartDate":"","dischargeEndDate":""};
     this.psService.getPersons(JSON.stringify(jsonObj)).subscribe(result => {
@@ -245,7 +233,7 @@ public data = {
    console.log(this.lowerBound)
    console.log(this.upperBound);
    let jsonObj={"userId":1,"lowerBound":this.lowerBound+1,"upperBound":this.upperBound,"psId":0,"psName":"","officeId":0,"ssn":0,"mrn":0,"city":"","stateId":"","zipCode":"","phone":"","psStatusId":"1","admissionStartDate":"","admissionEndDate":"","dischargeDate":"","caseManagerId":0,"coordinatorId":0,"serviceStartDate":"","serviceEndDate":"","serviceId":0,"authNumber":"","payorPlanId":"","authStatusId":"","accountNumber":"","dischargeStartDate":"","dischargeEndDate":""};
-  this.psService.getPersons(JSON.stringify(jsonObj)).subscribe(result => {
+   this.psService.getPersons(JSON.stringify(jsonObj)).subscribe(result => {
     this.psList = result.psList;
     console.log(result);
   })

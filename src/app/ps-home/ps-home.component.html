@@ -17,7 +17,7 @@
   <div class="d-flex ms-auto order-5">
     <button type="button" class="btn btn-info" (click)="onClickedMe()">Click here to view table</button>
     <button type="button" class="btn btn-danger" (click)="onClose()">Click here to close table</button>
-    <label class="card-title mr-2">Page Size</label>
+    <label class="card-title mr-2">Table size</label>
     <select
     class="form-control-sm"
     [(ngModel)]="pageSize"
@@ -403,11 +403,6 @@
  <button type="button" class="btn btn-primary" (click)="onClicked()">{{editForm?'update user':'CreatePerson'}}</button>
   <button type="button" class="btn btn-secondary">Edit</button>
   <div class="d-flex ms-auto order-5">
-    <label>select number of rows to display</label>
-    <!-- <select id="" required>
-      <option>--select--</option>
-      <option *ngFor="let value of limit; let index as i" (click)="onLimit(i)">{{value}}</option>
-    </select> -->
     <button class="btn btn-light" type="button" [disabled]="lowerBound<=0" (click)="onPrevious()">Previous</button>&nbsp;&nbsp;
     <button class="btn btn-dark" type="button" (click)="onNext()">Next</button>
   </div>
