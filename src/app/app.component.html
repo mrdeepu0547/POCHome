@@ -24,4 +24,10 @@
   </div>
   </div>
 </nav>
+<mat-sidenav-container>
+  <mat-sidenav #sidenav opened>Sidenav</mat-sidenav>
+    <mat-sidenav-content>Main</mat-sidenav-content>
+    <button mat-raised-button color="accent" (click)=sidenav.open()> CLick me to open</button>
+    <button mat-raised-button color="accent" (click)=sidenav.close()> CLick me to close</button>
+</mat-sidenav-container>
 <app-ps-home></app-ps-home>
