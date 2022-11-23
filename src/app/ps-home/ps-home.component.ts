@@ -111,9 +111,10 @@ public data = {
   this.getAllPersons();
   this.getAllLookupsData();
   this.tempData=this.psList
+ }
+ ngOnChanges(){
   this.setPageSize()
  }
-
  get getControl(){
   return this.personForm.controls;
  }
@@ -218,7 +219,8 @@ public data = {
   console.log(this.pageSize)
    this.lowerBound=this.lowerBound-Number(this.pageSize)
    this.upperBound=this.upperBound-Number(this.pageSize)
-
+   console.log(this.lowerBound)
+   console.log(this.upperBound)
    let jsonObj={"userId":1,"lowerBound":this.lowerBound,"upperBound":this.upperBound,"psId":0,"psName":"","officeId":0,"ssn":0,"mrn":0,"city":"","stateId":"","zipCode":"","phone":"","psStatusId":"1","admissionStartDate":"","admissionEndDate":"","dischargeDate":"","caseManagerId":0,"coordinatorId":0,"serviceStartDate":"","serviceEndDate":"","serviceId":0,"authNumber":"","payorPlanId":"","authStatusId":"","accountNumber":"","dischargeStartDate":"","dischargeEndDate":""};
    this.psService.getPersons(JSON.stringify(jsonObj)).subscribe(result => {
      this.psList = result.psList;
@@ -243,9 +245,10 @@ public data = {
 
 setPageSize = () => {
   console.log( this.pageSize);
-  this.upperBound=Number(this.pageSize)
+  // this.lowerBound+=Number(this.pageSize)
+  this.upperBound=this.lowerBound+Number(this.pageSize)
+  console.log(this.lowerBound)
   console.log(this.upperBound)
-  console.log(this.pageSize)
   let jsonObj={"userId":1,"lowerBound":this.lowerBound+1,"upperBound":this.upperBound,"psId":0,"psName":"","officeId":0,"ssn":0,"mrn":0,"city":"","stateId":"","zipCode":"","phone":"","psStatusId":"1","admissionStartDate":"","admissionEndDate":"","dischargeDate":"","caseManagerId":0,"coordinatorId":0,"serviceStartDate":"","serviceEndDate":"","serviceId":0,"authNumber":"","payorPlanId":"","authStatusId":"","accountNumber":"","dischargeStartDate":"","dischargeEndDate":""};
   this.psService.getPersons(JSON.stringify(jsonObj)).subscribe(result => {
     this.psList = result.psList;
