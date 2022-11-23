@@ -9,8 +9,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PsServiceService } from './ps-service.service';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import{MatButtonModule} from'@angular/material/button';
-import{MatSidenavModule} from'@angular/material/sidenav';
+import { MaterialModule } from './material/material.module';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,8 +24,7 @@ import{MatSidenavModule} from'@angular/material/sidenav';
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatButtonModule,
-    MatSidenavModule
+    MaterialModule
   ],
   providers: [PsServiceService],
   bootstrap: [AppComponent]

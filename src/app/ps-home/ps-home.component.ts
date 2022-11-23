@@ -26,6 +26,7 @@ paseSizes = [5, 10, 15, 20, 30];
   public lastName=''
   public firstName=''
   public names=[]
+  public editForm=false;
   // public limit = [5, 10, 15, 20];
   // public i:any;
 
@@ -79,6 +80,7 @@ public data = {
   "mappedOfficeIds": "140",
   "updatedUserId": 1 //hard code
 }
+
 
  constructor(private psService: PsServiceService , private http:HttpClient) { }
 
@@ -156,6 +158,8 @@ public data = {
   }
 
   onEditForm(data,i) {
+    this.show=true;
+    this.editForm=true
     console.log(this.psList[i]);
     console.log(data.PSName);
     const name =data.PSName;
@@ -181,6 +185,7 @@ public data = {
       timeZone: this.psList[i].timeZone,
       country: this.psList[i].country,
     });
+
   }
 
 
