@@ -17,9 +17,12 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSortModule } from '@angular/material/sort';
+
 @NgModule({
    imports: [
       CommonModule,
+      MatSortModule,
       MatButtonModule,
       MatToolbarModule,
       MatIconModule,
@@ -54,7 +57,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
       MatChipsModule,
       MatTooltipModule,
       MatTableModule,
-      MatPaginatorModule
+      MatPaginatorModule,
+      MatSortModule
    ],
    providers: [
       MatDatepickerModule,

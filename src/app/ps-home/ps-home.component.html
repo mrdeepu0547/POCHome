@@ -1,11 +1,5 @@
 <nav class="navbar navbar-expand-sm navbar-dark bg-primary navbar-fixed-top">
   <div class="container-fluid">
-    <mat-sidenav-container>
-      <mat-sidenav #sidenav opened>Sidenav</mat-sidenav>
-        <mat-sidenav-content>Main</mat-sidenav-content>
-        <button mat-raised-button color="accent" (click)=sidenav.open()> CLick me to open</button>
-        <button mat-raised-button color="accent" (click)=sidenav.close()> CLick me to close</button>
-    </mat-sidenav-container>
   <div class="collapse navbar-collapse " id="navbarSupportedContent">
     <div class="mx-auto">
     <a class="navbar-brand " href="#">POC LITE</a>
@@ -21,16 +15,16 @@
     <div class="d-inline p-2">Person Served</div>&nbsp;&nbsp;
   </div>
   <div class="d-flex ms-auto order-5">
-    <button type="button" class="btn btn-info" (click)="onClickedMe()">Click here to view table</button>&nbsp;&nbsp;
+    <button type="button" class="btn btn-info" (click)="onClickedMe()">Click here to view table</button>
     <button type="button" class="btn btn-danger" (click)="onClose()">Click here to close table</button>
     <label class="card-title mr-2">Page Size</label>
     <select
-      class="form-control-sm"
-      [(ngModel)]="pageSize"
-      (ngModelChange)="setPageSize()"
+    class="form-control-sm"
+    [(ngModel)]="pageSize"
+    (ngModelChange)="setPageSize()"
     >
-      <option *ngFor="let size of paseSizes">{{ size }}</option>
-    </select>
+  <option *ngFor="let size of paseSizes">{{ size }}</option>
+</select>
   </div>
 </nav>
 <div class="container" *ngIf="viewtable">
@@ -67,7 +61,6 @@
   </tbody>
 </table>
 </div>
-
 <div class="container" *ngIf="show">
 <form class="row m-0" (ngSubmit)="onSubmit()" [formGroup]="personForm">
   <div class="col-md-4 col-12">
@@ -163,7 +156,6 @@
         type="date"
         class="form-control"
         id="dateOfBirth"
-        value="dateOfBirth| date:'MM/dd/yyyy"
         formControlName="dateOfBirth"
         [ngClass]="{'is-invalid':submitted && personForm.controls.dateOfBirth.errors}" required>
       <span
@@ -408,7 +400,7 @@
 </form>
 </div>
 <nav class="navbar navbar-expand-sm navbar-dark  navbar-fixed-bottom">
-  <button type="button" class="btn btn-primary" (click)="onClicked()">{{editForm?'update user':'CreatePerson'}}</button>
+ <button type="button" class="btn btn-primary" (click)="onClicked()">{{editForm?'update user':'CreatePerson'}}</button>
   <button type="button" class="btn btn-secondary">Edit</button>
   <div class="d-flex ms-auto order-5">
     <label>select number of rows to display</label>
@@ -416,7 +408,7 @@
       <option>--select--</option>
       <option *ngFor="let value of limit; let index as i" (click)="onLimit(i)">{{value}}</option>
     </select> -->
-    <button class="btn btn-light" type="button" [disabled]="lowerBound<=19" (click)="onPrevious()">Previous</button>&nbsp;&nbsp;
+    <button class="btn btn-light" type="button" [disabled]="lowerBound<=0" (click)="onPrevious()">Previous</button>&nbsp;&nbsp;
     <button class="btn btn-dark" type="button" (click)="onNext()">Next</button>
   </div>
 </nav>

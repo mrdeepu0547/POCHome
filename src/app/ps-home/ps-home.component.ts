@@ -3,6 +3,33 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { PsServiceService } from '../ps-service.service';
 
+class psUser {
+  "psId":number;
+  "salutationId":string;
+  "genderId": string;
+  "lastName":string;
+  "firstName": string;
+  "raceId":string;
+  "maritalStatusID": string;
+  "dob":string;
+  "ssn": string;
+  "languageId":string;
+  "locationId": string;
+  "city": string;
+  "addressType":string;
+  "addressLine":string;
+  "addressLine2": string;
+  "zipcode": string;
+  "phoneTypeid": string;
+  "phone": string;
+  "stateId": number;
+  "countyId": number;
+  "timeZoneId": number;
+  "countryId": string;
+  "officeId": number;
+  "mappedOfficeIds": string;
+  "updatedUserId": number;
+}
 @Component({
   selector: 'app-ps-home',
   templateUrl: './ps-home.component.html',
@@ -10,15 +37,15 @@ import { PsServiceService } from '../ps-service.service';
 })
 export class PsHomeComponent implements OnInit {
 
-  public lowerBound = 0;
+  public lowerBound:number = 0;
   // public upperBound = 10;
-  pageSize: number = 10;
-paseSizes = [5, 10, 15, 20, 30];
+  pageSize: number = 20;
+   paseSizes:number[] = [5, 10, 15, 20];
   public lookUpsData:any = [];
   public psList:any = [];
-  upperBound=this.pageSize;
-  users= this.psList;
-  tempData= this.psList;
+  public upperBound:number=this.pageSize;
+  users= psUser;
+  tempData= psUser;
   public show = false;
   public searchText = '';
   public viewtable = false
@@ -27,9 +54,9 @@ paseSizes = [5, 10, 15, 20, 30];
   public firstName=''
   public names=[]
   public editForm=false;
+
   // public limit = [5, 10, 15, 20];
   // public i:any;
-
   personForm = new FormGroup({
     psId:new FormControl(0),
     lastName: new FormControl('', [Validators.required, Validators.minLength(3)]),
@@ -87,6 +114,7 @@ public data = {
  ngOnInit() {
   this.getAllPersons();
   this.getAllLookupsData();
+  this.tempData=this.psList
   this.setPageSize()
  }
 
@@ -133,7 +161,7 @@ public data = {
 // }
 
  getAllPersons() {
-  let jsonObj={"userId":1,"lowerBound":this.lowerBound,"upperBound":this.upperBound,"psId":0,"psName":"","officeId":0,"ssn":0,"mrn":0,"city":"","stateId":"","zipCode":"","phone":"","psStatusId":"1","admissionStartDate":"","admissionEndDate":"","dischargeDate":"","caseManagerId":0,"coordinatorId":0,"serviceStartDate":"","serviceEndDate":"","serviceId":0,"authNumber":"","payorPlanId":"","authStatusId":"","accountNumber":"","dischargeStartDate":"","dischargeEndDate":""};
+  let jsonObj={"userId":1,"lowerBound":this.lowerBound,"upperBound":this.pageSize,"psId":0,"psName":"","officeId":0,"ssn":0,"mrn":0,"city":"","stateId":"","zipCode":"","phone":"","psStatusId":"1","admissionStartDate":"","admissionEndDate":"","dischargeDate":"","caseManagerId":0,"coordinatorId":0,"serviceStartDate":"","serviceEndDate":"","serviceId":0,"authNumber":"","payorPlanId":"","authStatusId":"","accountNumber":"","dischargeStartDate":"","dischargeEndDate":""};
     this.psService.getPersons(JSON.stringify(jsonObj)).subscribe(result => {
       this.psList = result.psList;
       console.log(result);
@@ -199,20 +227,42 @@ public data = {
  }
 
  onPrevious(){
-   this.lowerBound=this.lowerBound-10;
-   this.upperBound=this.upperBound-10;
-   this.getAllPersons();
+  console.log(this.pageSize)
+   this.lowerBound=this.lowerBound-Number(this.pageSize)
+   this.upperBound=this.upperBound-Number(this.pageSize)
+
+   let jsonObj={"userId":1,"lowerBound":this.lowerBound,"upperBound":this.upperBound,"psId":0,"psName":"","officeId":0,"ssn":0,"mrn":0,"city":"","stateId":"","zipCode":"","phone":"","psStatusId":"1","admissionStartDate":"","admissionEndDate":"","dischargeDate":"","caseManagerId":0,"coordinatorId":0,"serviceStartDate":"","serviceEndDate":"","serviceId":0,"authNumber":"","payorPlanId":"","authStatusId":"","accountNumber":"","dischargeStartDate":"","dischargeEndDate":""};
+   this.psService.getPersons(JSON.stringify(jsonObj)).subscribe(result => {
+     this.psList = result.psList;
+     console.log(result);
+   })
  }
 
  onNext(){
-   this.lowerBound=this.lowerBound+10;
-   this.upperBound=this.upperBound+10;
-   this.getAllPersons();
+  console.log(this.pageSize)
+   this.lowerBound=this.lowerBound+Number(this.pageSize)
+   this.upperBound=this.upperBound+Number(this.pageSize);
+   console.log(this.lowerBound)
+   console.log(this.upperBound);
+   let jsonObj={"userId":1,"lowerBound":this.lowerBound+1,"upperBound":this.upperBound,"psId":0,"psName":"","officeId":0,"ssn":0,"mrn":0,"city":"","stateId":"","zipCode":"","phone":"","psStatusId":"1","admissionStartDate":"","admissionEndDate":"","dischargeDate":"","caseManagerId":0,"coordinatorId":0,"serviceStartDate":"","serviceEndDate":"","serviceId":0,"authNumber":"","payorPlanId":"","authStatusId":"","accountNumber":"","dischargeStartDate":"","dischargeEndDate":""};
+  this.psService.getPersons(JSON.stringify(jsonObj)).subscribe(result => {
+    this.psList = result.psList;
+    console.log(result);
+  })
+  //  this.getAllPersons();
  }
 //page limiters
 
 setPageSize = () => {
-  this.psList = [...this.tempData.slice(0, this.pageSize)];
+  console.log( this.pageSize);
+  this.upperBound=Number(this.pageSize)
+  console.log(this.upperBound)
+  console.log(this.pageSize)
+  let jsonObj={"userId":1,"lowerBound":this.lowerBound+1,"upperBound":this.upperBound,"psId":0,"psName":"","officeId":0,"ssn":0,"mrn":0,"city":"","stateId":"","zipCode":"","phone":"","psStatusId":"1","admissionStartDate":"","admissionEndDate":"","dischargeDate":"","caseManagerId":0,"coordinatorId":0,"serviceStartDate":"","serviceEndDate":"","serviceId":0,"authNumber":"","payorPlanId":"","authStatusId":"","accountNumber":"","dischargeStartDate":"","dischargeEndDate":""};
+  this.psService.getPersons(JSON.stringify(jsonObj)).subscribe(result => {
+    this.psList = result.psList;
+    console.log(result);
+  })
 };
 }
 
