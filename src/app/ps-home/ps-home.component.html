@@ -1,5 +1,11 @@
 <nav class="navbar navbar-expand-sm navbar-dark bg-primary navbar-fixed-top">
   <div class="container-fluid">
+    <mat-sidenav-container>
+      <mat-sidenav #sidenav opened>Sidenav</mat-sidenav>
+        <mat-sidenav-content>Main</mat-sidenav-content>
+        <button mat-raised-button color="accent" (click)=sidenav.open()> CLick me to open</button>
+        <button mat-raised-button color="accent" (click)=sidenav.close()> CLick me to close</button>
+    </mat-sidenav-container>
   <div class="collapse navbar-collapse " id="navbarSupportedContent">
     <div class="mx-auto">
     <a class="navbar-brand " href="#">POC LITE</a>
@@ -401,10 +407,10 @@
 </form>
 </div>
 <nav class="navbar navbar-expand-sm navbar-dark  navbar-fixed-bottom">
-  <button type="button" class="btn btn-primary" (click)="onClicked()">Create</button>&nbsp;&nbsp;
-  <button type="button" class="btn btn-secondary">Edit</button>&nbsp;&nbsp;&nbsp;&nbsp;
+  <button type="button" class="btn btn-primary" (click)="onClicked()">{{editForm?'update user':'CreatePerson'}}</button>
+  <button type="button" class="btn btn-secondary">Edit</button>
   <div class="d-flex ms-auto order-5">
-    <label>select number of rows to display</label>&nbsp;&nbsp;
+    <label>select number of rows to display</label>
     <!-- <select id="" required>
       <option>--select--</option>
       <option *ngFor="let value of limit; let index as i" (click)="onLimit(i)">{{value}}</option>
