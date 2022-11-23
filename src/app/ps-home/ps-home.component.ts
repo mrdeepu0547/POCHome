@@ -115,6 +115,7 @@ public data = {
     this.setValue();
     console.log(this.data);
     this.personForm.reset();
+    this.show=false
   }
 
  onCancel(){

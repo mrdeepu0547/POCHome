@@ -163,6 +163,7 @@
         type="date"
         class="form-control"
         id="dateOfBirth"
+        value="dateOfBirth| date:'MM/dd/yyyy"
         formControlName="dateOfBirth"
         [ngClass]="{'is-invalid':submitted && personForm.controls.dateOfBirth.errors}" required>
       <span
