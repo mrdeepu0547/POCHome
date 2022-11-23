@@ -120,6 +120,7 @@ public data = {
  onCancel(){
    this.personForm.reset();
    this.show=false;
+   this.editForm=false
  }
 
 //  onLimit(i){
