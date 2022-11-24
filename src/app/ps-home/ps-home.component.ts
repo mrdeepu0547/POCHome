@@ -186,7 +186,7 @@ userData:any=[]
     console.log(this.psList[i]); console.log(data.PSName);
     console.log(i);
     console.log(data.PSId)
-    this.http.get('http://poc.aquilasoftware.com/poclite/psapi/getPSDetails?jsonObj=%7B%22psId%22:'+data.PSId+'%7D').subscribe(
+    this.http.get('http://poc.aquilasoftware.com/poclite/psapi/getPSDetails?jsonObj={"psId":'+data.PSId+'}').subscribe(
       result => {
         this.userData = result;
         console.log(result);
