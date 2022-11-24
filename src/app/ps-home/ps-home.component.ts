@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { PsServiceService } from '../ps-service.service';
-
 class psUser {
   "psId":number;
   "salutationId":string;
@@ -136,9 +135,14 @@ public data = {
    if(this.personForm.invalid){
      return
     }
+    else{
+      this.setValue();
+    this.psService.addPersons(this.data)
+    }
     alert("Sucess !!");
     this.setValue();
     console.log(this.data);
+
     this.personForm.reset();
     this.show=false
   }
@@ -166,7 +170,6 @@ public data = {
     this.data.maritalStatusID=this.personForm.get('maritialStatus')?.value;
     this.data.genderId=this.personForm.get('gender')?.value;
     this.data.salutationId=this.personForm.get('salutation')?.value;
-    this.data.dob=this.personForm.get('dateOfBirth')?.value;
     this.data.raceId=this.personForm.get('race')?.value;
     this.data.ssn=this.personForm.get('ssn')?.value;
     this.data.phone=this.personForm.get('phone')?.value;
@@ -174,47 +177,57 @@ public data = {
     this.data.addressType=this.personForm.get('addressType')?.value,
     this.data.addressLine=this.personForm.get('addressLine1')?.value;
     this.data.addressLine2=this.personForm.get('addressLine2')?.value;
+    this.data.dob="01/01/1998"
   }
-
+userData:any=[]
   onEditForm(data,i) {
     this.show=true;
     this.editForm=true
-    console.log(this.psList[i]);
-    console.log(data.PSName);
+    console.log(this.psList[i]); console.log(data.PSName);
+    console.log(i);
+    console.log(data.PSId)
+    this.http.get('http://poc.aquilasoftware.com/poclite/psapi/getPSDetails?jsonObj=%7B%22psId%22:'+data.PSId+'%7D').subscribe(
+      result => {
+        this.userData = result;
+        console.log(result);
+        this.personForm.patchValue({
+          lastName: this.userData.lastname,
+          firstName: this.userData.firstname,
+          gender: this.userData.gender,
+          salutation: this.userData.salutation,
+          maritialStatus: this.userData.maritialStatus,
+          dateOfBirth: this.userData.dob,
+          race: this.userData.race,
+          ssn: this.userData.ssn,
+          language: this.psList[i].language,
+          addressType: this.psList[i].addressType,
+          addressLine1: this.userData.addressLane1,
+          addressLine2: this.psList[i].addressLine2,
+          zipCode: this.userData.zipCode,
+          phoneType: this.userData.phoneType,
+          phone: this.userData.phone1,
+          city: this.userData.city,
+          state: this.userData.state,
+          timeZone: this.userData.timeZone,
+          country: this.userData.countryId,
+          psId:this.userData.PSId
+        });
+      })
+      console.log(this.userData)
     const name =data.PSName;
     this.names=name.split(",")
-    this.personForm.patchValue({
-      lastName: this.names[0],
-      firstName: this.names[1],
-      gender: this.psList[i].genderId,
-      salutation: this.psList[i].salutation,
-      maritialStatus: this.psList[i].maritalStatus,
-      dateOfBirth: this.psList[i].dateOfBirth,
-      race: this.psList[i].race,
-      ssn: this.psList[i].ssn,
-      language: this.psList[i].language,
-      addressType: this.psList[i].addressType,
-      addressLine1: this.psList[i].addressLine1,
-      addressLine2: this.psList[i].addressLine2,
-      zipCode: this.psList[i].zipCode,
-      phoneType: this.psList[i].phoneType,
-      phone: this.psList[i].phone,
-      city: this.psList[i].city,
-      state: this.psList[i].state,
-      timeZone: this.psList[i].timeZone,
-      country: this.psList[i].country,
-    });
 
+    console.log(this.userData)
   }
 
-
+//get look ups data
   getAllLookupsData() {
    this.psService.getData().subscribe(result => {
      this.lookUpsData = result;
      console.log(result);
    })
  }
-
+//functions for next calls and previeous calls
  onPrevious(){
   console.log(this.pageSize)
    this.lowerBound=this.lowerBound-Number(this.pageSize)
