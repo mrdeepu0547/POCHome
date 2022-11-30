@@ -148,6 +148,7 @@ public data = {
   }
 
  onCancel(){
+  console.log("reset");
    this.personForm.reset();
    this.show=false;
    this.editForm=false
@@ -179,6 +180,7 @@ public data = {
     this.data.addressLine2=this.personForm.get('addressLine2')?.value;
     this.data.dob="01/01/1998"
   }
+
 userData:any=[]
   onEditForm(data,i) {
     this.show=true;

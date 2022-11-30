@@ -10,12 +10,14 @@ import { PsServiceService } from './ps-service.service';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PsHomeComponent,
     FilterPipe,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
